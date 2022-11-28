@@ -57,4 +57,29 @@ sudo chmod go+r ~/.kube/config
     ```
     Note: Storage Class YAML taken from https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml.
 
+3. `aws`  
+    See sample PVC yaml `pvc_aws.yaml`
 
+
+### Pilot run 1 - execute from inside cluster
+
+See `commands_pilot1.sh`.
+
+In this configuration, a temporary pod is created to:
+* Upload input files
+* Execute the Nextflow pipeline
+* Download output files
+
+In this way, it is possible to monitor the pipeline as it runs, using the temporary pod.
+
+
+### Pilot run 2 - execute from local computer
+
+See `commands_pilot2.sh`.
+
+In this configuration, a temporary pod is created only to:
+* Upload input files
+* Download output files
+
+Execution of the Nextflow pipeline is handled from the local computer instead.  
+In this way, no temporary pod is required during runtime.
