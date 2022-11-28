@@ -1,4 +1,4 @@
-## Charmed Kubernetes on Nimbus
+## Charmed Kubernetes on Nimbus using LXD containers
 
 Outcome of the Kubernetes training 17-21 Feb 2020
 
