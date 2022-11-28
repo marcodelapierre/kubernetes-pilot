@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: blast
+  namespace: default
+spec:
+  containers:
+    - image: quay.io/biocontainers/blast:2.7.1--h4422958_6
+      command: [ "blastp", "-query", "/data/P04156.fasta", "-db", "/data/zebrafish.1.protein.faa", "-out", "/data/results.txt" ]
+      imagePullPolicy: IfNotPresent
+      name: blast
+      volumeMounts:
+        - mountPath: "/data"
+          name: myvol
+  dnsPolicy: "ClusterFirst"
+  dnsConfig:
+    nameservers:
+      - 8.8.8.8
+      - 8.8.4.4
+  restartPolicy: Never
+  volumes:
+    - name: myvol
+      persistentVolumeClaim:
+        claimName: claim
